@@ -10,13 +10,13 @@ def downloadButton():
     try:
         url = ytUrl.get()
         if "list=" in url or "playlist=" in url:
-            messagebox.showwarning("Advertencia", "Esta por descargar una Playlist, esto tomara bastante tiempo.")
+            messagebox.showwarning("Advertencia", "Está por descargar una playlist, esto podría tomar bastante tiempo.")
             p = Playlist(url)
             for v in p.videos:
                 download(v.watch_url)
         else:
             download(url)
-        messagebox.showinfo("Completado", "Descarga completada!")
+        messagebox.showinfo("Completo", "¡Descarga completa!")
     except Exception as e:
         messagebox.showerror("Error", e)
 
@@ -33,7 +33,7 @@ def download(url):
             subprocess.run(['ffmpeg', '-i', inputFile, outputFile], check=True)
             os.remove(inputFile)
     except RegexMatchError as rme:
-        messagebox.showerror("Error", "El enlace no es valido.")
+        messagebox.showerror("Error", "El enlace no es válido.")
     except Exception as e:
         messagebox.showerror("Error", e)
 
